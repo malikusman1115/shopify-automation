@@ -9,7 +9,7 @@ def scrape_shopify_products(shop_url, page=1):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
         }
-        response = requests.get(product_api_url, headers=headers, verify=False)
+        response = requests.get(product_api_url, headers=headers, verify=False, timeout=60)
         response.raise_for_status()
         product_data = response.json()
 
@@ -48,7 +48,7 @@ def scrape_single_product(product_url):
         product_api_url = f"{base_url}/products/{handle}.json"
 
         # Fetch product data
-        response = requests.get(product_api_url, headers=headers)
+        response = requests.get(product_api_url, headers=headers, timeout=60)
         response.raise_for_status()
         product_data = response.json()
 

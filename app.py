@@ -41,8 +41,8 @@ def push_to_shopify(title, description, price, image):
     }
     try:
         response = requests.post(
-            f"{SHOPIFY_STORE_URL}/admin/api/2024-01/products.json", headers=headers, json=payload
-        )
+            f"{SHOPIFY_STORE_URL}/admin/api/2024-01/products.json", headers=headers, json=payload, 
+        timeout=60)
         if response.status_code == 201:
             st.success(f"Product '{title}' pushed to Shopify successfully.")
         else:
